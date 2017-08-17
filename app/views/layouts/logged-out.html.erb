@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cc</title>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <style>
+
+    #sidebar {
+      font-family: "Poppins", sans-serif;
+      color:#ffffff;
+    }
+    .w3-main {
+      font-family: "Poppins", sans-serif;
+    }
+    .navy {background-color:#003278!important}
+    .font-navy {color:#003278!important}
+    .font-white {color:#ffffff!important}
+    .white {background-color:#ffffff!important}
+    .material-icons {vertical-align:-14%;}
+    body {font-size:16px;}
+    #account-actions {
+      display: none;
+      width: 80%;
+    }
+    .bar {
+      padding: 0px;
+      height: 61px;
+    }
+    .title {
+      position: relative;
+      bottom: 15px;
+    }
+    .options {
+      position: relative;
+      top: 3px;
+      float: right;
+    }
+    a {
+      text-decoration: none;
+    }
+    .show-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <script>
+      $(document).ready(function(){
+          $("#expand").click(function(){
+              $("#account-actions").toggle();
+          });
+      });
+  </script>
+
+</head>
+
+<body>
+
+
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+
+<div class='content-header'>
+  <p class='w3-jumbo w3-margin-left' style='margin-bottom: 0px;'><%= @athlete.first_name %> <%= @athlete.last_name %></p>
+  <hr style='margin-top: 0px;'>
+</div>
+<br>
+<% if current_user&.editor? %>
+  <%= link_to 'Edit Athlete', edit_athlete_path, remote: true, class: 'w3-btn w3-margin-left w3-white w3-border w3-border-blue w3-round-large' %>
+<% end %>
+<div id="athlete-form" class='w3-modal w3-display-middle' style="display:none;"></div>
+<br>
+<br>
+<div class='w3-row-padding'>
+  <div class='w3-third'>
+    <h1>Grade</h1>
+    <hr>
+    <%= @athlete.grade %>
+  </div>
+  <div class='w3-third'>
+    <h1>Note</h1>
+    <hr>
+    <%= @athlete.note %>
+  </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class='w3-row-padding'>
+  <div class='w3-half'>
+    <h1 style='margin-bottom: 0px;'>Meets</h1>
+    <hr style='margin-top: 0px;'>
+    <% @meets.each do |meet| %>
+        <div class="w3-container">
+          <div class="bar w3-panel w3-border w3-round">
+            <img class='w3-image image w3-round' src="/assets/north.jpg"/>
+            <%= link_to meet_path(meet) do %>
+                <span class='w3-padding w3-xlarge title show-link'><%= meet.title %></span>
+            <% end %>
+          </div>
+        </div>
+    <% end %>
+  </div>
+  <div class='w3-half'>
+    <h1 style='margin-bottom: 0px;'>WODs</h1>
+    <hr style='margin-top: 0px;'>
+    <% @wods.each do |wod| %>
+        <div class="w3-container">
+          <div class="bar w3-panel w3-border w3-round">
+            <img class='w3-image image w3-round' src="/assets/north.jpg"/>
+            <%= link_to wod_path(wod) do %>
+                <span class='w3-padding w3-xlarge title show-link'><%= wod.title %></span>
+            <% end %>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class='w3-center w3-card w3-display-middle w3-padding-large w3-round w3-border w3-border-blue'>
+  <%= simple_form_for @user do |f| %>
+      <div>
+        <%= f.text_field :first_name, :placeholder =>'First Name', class: 'w3-round w3-input w3-border w3-margin-top' %>
+      </div>
+      <div>
+        <%= f.text_field :last_name, :placeholder =>'Last Name', class: 'w3-round w3-input w3-border w3-margin-top' %>
+      </div>
+      <div>
+        <%= f.text_field :email, :placeholder =>'Email Address', class: 'w3-round w3-input w3-border w3-margin-top' %>
+      </div>
+      <div>
+        <%= f.text_field :password, :placeholder =>'Password', class: 'w3-round w3-input w3-border w3-margin-top' %>
+      </div>
+      <%= f.submit 'Signup', class: 'w3-btn w3-round w3-white w3-border w3-border-blue w3-margin-top' %>
+  <% end %>
+</div>

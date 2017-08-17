@@ -1,0 +1,51 @@
+<div class='content-header'>
+  <p class='w3-jumbo w3-margin-left' style='margin-bottom: 0px;'>Dashboard</p>
+  <hr style='margin-left: 10px; margin-top: 0px; width:25%; border:5px solid #003278;' class='w3-round'>
+</div>
+<br>
+<br>
+<br>
+<br>
+<h1 class='w3-margin' style='margin-bottom: 0px;'>Notices</h1>
+<hr style='margin-top: 0px;'>
+<div id='notices' class='w3-padding'><%= render @notices %></div>
+
+<br>
+<br>
+<br>
+<br>
+
+<div class='w3-row-padding'>
+  <div class='w3-half'>
+    <h1 style='margin-bottom: 0px;'>Upcoming Meets</h1>
+    <hr style='margin-top: 0px;'>
+    <% @meets.each do |meet| %>
+        <div class="w3-container">
+          <div class="bar w3-panel w3-border w3-round">
+            <img class='w3-image w3-opacity image w3-round' src="/assets/north.jpg"/>
+            <i class="icon material-icons  w3-xxxlarge">&#xE566;</i>
+            <%= link_to meet_path(meet) do %>
+                <span class='w3-padding w3-xlarge title show-link'><%= meet.title %></span>
+                <span class='w3-padding w3-large title'><%= meet.date.strftime("%a %b %e %I:%M %P") %></span>
+            <% end %>
+          </div>
+        </div>
+    <% end %>
+  </div>
+  <div class='w3-half'>
+    <h1 style='margin-bottom: 0px;'>Upcoming WODs</h1>
+    <hr style='margin-top: 0px;'>
+    <% @wods.each do |wod| %>
+        <div class="w3-container">
+          <div class="bar w3-panel w3-border w3-round">
+            <img class='w3-image w3-opacity image w3-round' src="/assets/north.jpg"/>
+            <img class='icon-image w3-image' src="/assets/kettlebell.png"/>
+            <%= link_to wod_path(wod) do %>
+                <span class='w3-padding w3-xlarge title show-link'><%= wod.title %></span>
+                <span class='w3-padding w3-large title'><%= wod.date.strftime("%a %b %e %I:%M %P") %></span>
+            <% end %>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>

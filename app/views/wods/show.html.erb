@@ -1,0 +1,72 @@
+
+<div class='content-header'>
+  <p class='w3-jumbo w3-margin-left' style='margin-bottom: 0px;'><%= @wod.title %></p>
+  <hr style='margin-top: 0px;'>
+</div>
+<br>
+<% if current_user&.editor? %>
+  <%= link_to 'Edit WOD', edit_wod_path, remote: true, class: 'w3-btn w3-white w3-border w3-border-blue w3-round-large' %>
+<% end %>
+<div id="wod-form" class='w3-modal w3-display-middle' style="display:none;"></div>
+<br>
+<br>
+<div class='w3-row-padding'>
+  <div class='w3-third'>
+    <h1>Date and Time</h1>
+    <hr>
+    <%= @wod.date.strftime("%A %b %e %I:%M %P") %>
+  </div>
+  <div class='w3-third'>
+    <h1>Location</h1>
+    <hr>
+    <%= @wod.location %>
+  </div>
+  <div class='w3-third'>
+    <h1>Description</h1>
+    <hr>
+    <%= @wod.description %>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<div class='w3-margin'>
+  <h1>Results</h1>
+  <hr>
+  <% if current_user&.editor? %>
+    <%= link_to 'New Result', new_score_path({:wod_id => @wod.id}), remote: true, class: 'w3-btn w3-white w3-border w3-border-blue w3-round-large' %>
+  <% end %>
+  <div id="score-form" class='w3-modal w3-display-middle' style="display:none;"></div>
+  <table class="w3-table w3-striped w3-bordered">
+    <tr>
+      <th>Name</th>
+      <th>Level</th>
+      <th>Placement</th>
+      <th>Time</th>
+      <th>PR</th>
+      <th>Reps</th>
+      <th>Rounds</th>
+      <th>Action</th>
+    </tr>
+    <% @results.each do |athlete, score| %>
+        <tr>
+          <td><%= athlete.first_name %> <%= athlete.last_name %></td>
+          <td><%= score.level %></td>
+          <td><%= score.placement %></td>
+          <td><%= score.time %></td>
+          <td><%= score.pr %></td>
+          <td><%= score.reps %></td>
+          <td><%= score.rounds %></td>
+          <td>
+            <% if current_user&.admin? %>
+              <%= link_to destroy_score_path(score), method: :delete,  data: { confirm: 'Are you sure?' } do %>
+                  <i class="w3-round material-icons w3-hover-red">delete</i>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+    <% end %>
+  </table>
+
+</div>

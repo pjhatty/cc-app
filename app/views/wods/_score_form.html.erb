@@ -1,0 +1,31 @@
+<div class="w3-modal-content w3-center w3-padding-32">
+  <span onclick="document.getElementById('score-form').style.display='none'"
+        class="w3-button w3-display-topright">&times;</span>
+  <%= simple_form_for @score, :url => { :action => :create_score } do |f| %>
+      <div class="w3-row-padding w3-margin-top">
+        <div class='w3-padding'>
+          <%= f.collection_select :athlete_id, Athlete.all, :id, :full_name, class: 'w3-input w3-border w3-round' %>
+        </div>
+        <div class="w3-half">
+          <%= f.text_field :level, placeholder: "Level", class: 'w3-input w3-border w3-round' %>
+        </div>
+        <div class="w3-half">
+          <%= f.text_field :reps, placeholder: "Reps", class: 'w3-input w3-border w3-round' %>
+        </div>
+      </div>
+      <div class='w3-padding'>
+        <%= f.text_field :rounds, placeholder: "Rounds", class: 'w3-input w3-border w3-round' %>
+      </div>
+      <div class='w3-padding'>
+        <%= f.text_field :time, placeholder: "Time", class: 'w3-input w3-border w3-round' %>
+      </div>
+      <div class='w3-padding'>
+        <%= f.text_field :pr, placeholder: "PR", class: 'w3-input w3-border w3-round' %>
+      </div>
+      <%= f.hidden_field :wod_id, :value => params[:wod_id] %>
+      <%= f.button :submit, class: 'w3-btn w3-white w3-border w3-border-blue w3-round-large' %>
+  <% end %>
+</div>
+
+
+

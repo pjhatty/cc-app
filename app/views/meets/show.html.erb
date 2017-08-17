@@ -1,0 +1,66 @@
+
+<div class='content-header'>
+  <p class='w3-jumbo w3-margin-left' style='margin-bottom: 0px;'><%= @meet.title %></p>
+  <hr style='margin-top: 0px;'>
+</div>
+<br>
+<% if current_user&.editor? %>
+  <%= link_to 'Edit Meet', edit_meet_path, remote: true, class: 'w3-btn w3-white w3-border w3-border-blue w3-round-large' %>
+<% end %>
+<div id="meet-form" class='w3-modal w3-display-middle' style="display:none;"></div>
+<br>
+<br>
+<div class='w3-row-padding'>
+  <div class='w3-third'>
+    <h1>Date and Time</h1>
+    <hr>
+    <%= @meet.date.strftime("%A %b %e %I:%M %P") %>
+  </div>
+  <div class='w3-third'>
+    <h1>Location</h1>
+    <hr>
+    <%= @meet.location %>
+  </div>
+  <div class='w3-third'>
+    <h1>Description</h1>
+    <hr>
+    <%= @meet.description %>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<div class='w3-margin'>
+  <h1>Results</h1>
+  <hr>
+  <% if current_user&.editor? %>
+    <%= link_to 'New Result', new_position_path({:meet_id => @meet.id}), remote: true, class: 'w3-btn w3-white w3-border w3-border-blue w3-round-large' %>
+  <% end %>
+  <div id="position-form" class='w3-modal w3-display-middle' style="display:none;"></div>
+  <table class="w3-table w3-striped w3-bordered">
+    <tr>
+      <th>Name</th>
+      <th>Placement</th>
+      <th>Time</th>
+      <th>PR</th>
+      <th>Action</th>
+    </tr>
+    <% @results.each do |athlete, position| %>
+        <tr>
+          <td><%= athlete.first_name %> <%= athlete.last_name %></td>
+          <td><%= position.placement %></td>
+          <td><%= position.time %></td>
+          <td><%= position.pr %></td>
+          <td>
+            <% if current_user&.editor? %>
+              <%= link_to destroy_position_path(position), method: :delete,  data: { confirm: 'Are you sure?' } do %>
+                  <i class="w3-round material-icons w3-hover-red">delete</i>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+    <% end %>
+  </table>
+
+</div>

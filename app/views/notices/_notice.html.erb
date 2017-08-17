@@ -1,0 +1,16 @@
+
+
+
+<div class="w3-container">
+  <div class="bar w3-panel w3-border w3-leftbar w3-sand w3-round">
+
+    <span class='w3-padding w3-xlarge title' style='top:13px;'><%= notice.title %></span>
+    <% if current_user&.admin? %>
+      <span class='w3-xlarge options'>
+        <%= link_to notice, remote: true, method: :delete,  data: { confirm: 'Are you sure?' } do %>
+            <i class="w3-round material-icons w3-margin w3-hover-red">delete</i>
+          <% end %>
+      </span>
+    <% end %>
+  </div>
+</div>
