@@ -14,7 +14,7 @@
         <%= f.text_area :description, placeholder: "Description", class: 'w3-input w3-border w3-round' %>
       </div>
       <div class='w3-padding'>
-        <%= f.datetime_select(:date, discard_year: true, class: 'w3-input w3-border') %>
+        <%= f.datetime_select(:date, datetime_separator: "@ ", discard_year: true, class: 'w3-input w3-border') %>
       </div>
       <%= f.button :submit, class: 'w3-btn w3-white w3-border w3-border-blue w3-round-large' %>
   <% end %>
