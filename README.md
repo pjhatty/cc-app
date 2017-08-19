@@ -1,2 +1,2 @@
 # cc-app
-This repo contains the code for the Cross Country appoh yeah!.
+This repo contains the code for the SMAC Cross Country app.
