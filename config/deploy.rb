@@ -1,6 +1,6 @@
 # config valid only for current version of Capistrano
-lock "3.9.0"
 
+set :stage, :production
 set :application, "cc-app"
 set :repo_url, "git@github.com:pjhatty/cc-app.git"
 set :deploy_to, "/home/ubuntu/cc-app"
@@ -10,20 +10,15 @@ set :use_sudo, false
 set :rails_env, "production"
 set :deploy_via, :copy
 set :keep_releases, 3
-server "151.236.218.85", roles: [:app, :web, :db], :primary => true
+server "52.33.18.125", roles: [:app, :web, :db], :primary => true
 
 set :pty, true
 
-set :ssh_options, {
-    forward_agent: true,
-    auth_methods: ["publickey"],
-    keys: ["/Users/pjhatty/Desktop/launchpad/K9.pem"]
-}
+set :ssh_options, { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/github) }
 
 
-
-
-
+set :passenger_environment_variables, { :path => 'usr/local/bin/passenger/bin:$PATH' }
+set :passenger_restart_command, 'usr/local/bin/passenger/bin/passenger-config restart-app'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
