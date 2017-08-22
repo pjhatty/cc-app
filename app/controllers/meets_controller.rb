@@ -5,6 +5,11 @@ class MeetsController < ApplicationController
   before_action :require_admin, only: [:destroy]
   before_action :all_meets, only: [:index, :create, :update, :destroy]
   before_action :set_meets, only: [:edit, :update, :destroy]
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    message = "Invalid Meet  #{params[:id]}, not found."
+    logger.error message
+    redirect_to root_url, notice: message
+  end
   respond_to :html, :js
 
 
@@ -54,6 +59,7 @@ class MeetsController < ApplicationController
 
   def destroy
     @meet.destroy
+    redirect_to request.referrer
   end
 
 

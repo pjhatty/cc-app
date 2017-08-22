@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  # before_action :require_user, except: []
+  before_action :require_admin, only: [:create]
 
   def new
     @user = User.new
