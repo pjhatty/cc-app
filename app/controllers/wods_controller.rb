@@ -5,6 +5,11 @@ class WodsController < ApplicationController
   before_action :require_admin, only: [:destroy]
   before_action :all_wods, only: [:index, :create, :update, :destroy]
   before_action :set_wods, only: [:edit, :update, :destroy]
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    message = "Invalid WOD  #{params[:id]}, not found."
+    logger.error message
+    redirect_to root_url, notice: message
+  end
   respond_to :html, :js
 
 
@@ -24,7 +29,7 @@ class WodsController < ApplicationController
     @score = Score.create(score_params)
 
     if @score.save
-      redirect_to request.referrer
+      redirect_to '/wods'
     else
       render 'error'
     end
@@ -54,11 +59,11 @@ class WodsController < ApplicationController
 
   def destroy
     @wod.destroy
+    redirect_to request.referrer
   end
 
 
   private
-
 
   def all_wods
     @wods = Wod.all

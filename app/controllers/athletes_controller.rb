@@ -4,6 +4,11 @@ class AthletesController < ApplicationController
   before_action :require_admin, only: [:destroy]
   before_action :all_athletes, only: [:index, :create, :update, :destroy]
   before_action :set_athletes, only: [:edit, :update, :destroy]
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    message = "Invalid Athlete  #{params[:id]}, not found."
+    logger.error message
+    redirect_to root_url, notice: message
+  end
   respond_to :html, :js
 
 
@@ -29,6 +34,7 @@ class AthletesController < ApplicationController
 
   def destroy
     @athlete.destroy
+    redirect_to request.referrer
   end
 
   private

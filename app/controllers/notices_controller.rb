@@ -5,6 +5,11 @@ class NoticesController < ApplicationController
   before_action :require_admin, only: [:destroy]
   before_action :all_notices, only: [:index, :create, :update, :destroy]
   before_action :set_notices, only: [:edit, :update, :destroy]
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    message = "Invalid Notice  #{params[:id]}, not found."
+    logger.error message
+    redirect_to root_url, notice: message
+  end
   respond_to :html, :js
 
 

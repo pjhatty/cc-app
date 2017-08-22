@@ -4,7 +4,7 @@
   <%= simple_form_for @wod, remote: true do |f| %>
       <div class="w3-row-padding w3-margin-top">
         <div class="w3-half">
-          <%= f.text_field :title, placeholder: "Name", class: 'w3-input w3-border w3-round' %>
+          <%= f.text_field :title, placeholder: "Name", class: 'top-form-field w3-input w3-border w3-round' %>
         </div>
         <div class="w3-half">
           <%= f.text_field :location, placeholder: "Location", class: 'w3-input w3-border w3-round' %>
@@ -17,6 +17,11 @@
         <%= f.datetime_select(:date, datetime_separator: "@ ", discard_year: true, class: 'w3-input w3-border') %>
       </div>
       <%= f.button :submit, class: 'w3-btn w3-white w3-border w3-border-blue w3-round-large' %>
+      <% if current_user&.admin? %>
+          <%= link_to @wod, remote: true, method: :delete,  data: { confirm: 'Are you sure?' } do %>
+              <i class="w3-btn w3-white w3-border w3-border-red w3-round-large">Delete</i>
+          <% end %>
+      <% end %>
   <% end %>
 </div>
 

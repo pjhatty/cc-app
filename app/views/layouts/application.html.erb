@@ -24,7 +24,6 @@
       .font-white {color:#ffffff!important}
       .white {background-color:#ffffff!important}
       .material-icons {vertical-align:-14%;}
-      body {font-size:16px;}
       #account-actions {
         display: none;
         width: 80%;
@@ -33,9 +32,22 @@
         padding: 0px;
         height: 61px;
       }
+      .dashboard-title {
+        position: relative;
+        bottom: 18px;
+        left: -40px;
+      }
       .title {
         position: relative;
-        bottom: 15px;
+        bottom: 18px;
+      }
+      .notice-title {
+        position: relative;
+        bottom: 18px;
+      }
+      .date-title {
+        position: relative;
+        bottom: 18px;
       }
       .options {
         position: relative;
@@ -65,14 +77,17 @@
         left: -61px;
         top: -2px;
       }
+      .top-form-field {
+        margin-bottom: 7px;
+      }
+
+
     </style>
 
 
   </head>
 
   <body>
-
-
 
   <nav style="z-index:3;width:300px;font-weight:bold;" class="w3-sidebar w3-collapse w3-padding w3-top navy w3-bar-block" id='sidebar'>
     <%= link_to '/dashboard' do %>
@@ -98,7 +113,9 @@
   <!-- Top menu on small screens -->
   <header class="w3-container w3-top w3-hide-large navy w3-xlarge w3-padding">
     <a href="javascript:void(0)" class="w3-button w3-text-white w3-margin-right" onclick="w3_open()">☰</a>
-    <span class='headline w3-text-white'>Cross Country</span>
+    <%= link_to '/dashboard' do %>
+      <span class='headline w3-text-white'>Cross Country</span>
+    <% end %>
   </header>
 
   <!-- Overlay effect when opening sidebar on small screens -->

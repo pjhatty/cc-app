@@ -3,10 +3,10 @@
     <img class='w3-image w3-opacity image w3-round' src="/assets/north.jpg"/>
     <img class='icon-image w3-image' src="/assets/kettlebell.png"/>
     <%= link_to wod_path(wod) do %>
-        <span class='w3-padding w3-xlarge title show-link'><%= wod.title %></span>
-        <span class='w3-padding w3-large title'><%= wod.date.strftime("%a %b %e %I:%M %P") %></span>
+        <span class='w3-xlarge dashboard-title show-link'><%= wod.title %></span>
+        <span class='w3-hide-small title'><%= wod.date.strftime("%m/%d @ %I:%M %P") %></span>
     <% end %>
-    <span class='w3-padding- w3-xlarge options'>
+    <span class='w3-hide-small w3-xlarge options'>
       <% if current_user&.editor? %>
         <%= link_to edit_wod_path(wod), remote: true do %>
           <i class="w3-round material-icons w3-margin w3-hover-black">mode_edit</i>
@@ -15,6 +15,13 @@
       <% if current_user&.admin? %>
         <%= link_to wod, remote: true, method: :delete,  data: { confirm: 'Are you sure?' } do %>
           <i class="w3-round material-icons w3-margin w3-hover-red">delete</i>
+        <% end %>
+      <% end %>
+    </span>
+    <span class='w3-xlarge w3-hide-medium w3-hide-large options'>
+      <% if current_user&.editor? %>
+        <%= link_to edit_wod_path(wod), remote: true do %>
+          <i class="w3-round material-icons w3-margin w3-hover-black">more_horiz</i>
         <% end %>
       <% end %>
     </span>
