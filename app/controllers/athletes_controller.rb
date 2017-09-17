@@ -23,8 +23,13 @@ class AthletesController < ApplicationController
 
   def show
     @athlete = Athlete.find params[:id]
-    @meets = @athlete.meets
-    @wods = @athlete.wods
+    @meets = @athlete.meets.order('date ASC')
+    @wods = @athlete.wods.order('date ASC')
+    @results = {}
+    @meets.each do |meet|
+      position = Position.find_by(athlete_id: @athlete.id, meet_id: meet.id)
+      @results[meet] = position
+    end
   end
 
   def update

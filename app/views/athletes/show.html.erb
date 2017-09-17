@@ -34,12 +34,13 @@
   <div class='w3-half'>
     <h1 style='margin-bottom: 0px;'>Meets</h1>
     <hr style='margin-top: 0px;'>
-    <% @meets.each do |meet| %>
+    <% @results.each do |meet, position| %>
         <div class="w3-container">
           <div class="bar w3-panel w3-border w3-round">
             <img class='w3-image image w3-round' src="/assets/north.jpg"/>
             <%= link_to meet_path(meet) do %>
-                <span class='w3-padding w3-xlarge title show-link'><%= meet.title %></span>
+                <span class='w3-padding w3-xlarge title'><%= position.time %></span>
+                <span class='w3-padding w3-xlarge title show-link w3-hide-small' style="display:inline-block;"><%= meet.title %></span>
             <% end %>
           </div>
         </div>
