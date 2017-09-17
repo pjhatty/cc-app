@@ -37,7 +37,7 @@
   <% if current_user&.editor? %>
     <%= link_to 'New Result', new_position_path({:meet_id => @meet.id}), remote: true, class: 'w3-btn w3-white w3-border w3-border-blue w3-round-large' %>
   <% end %>
-  <div id="position-form" class='w3-modal w3-display-middle' style="display:none;"></div>
+  <div id="position-form" class='w3-modal' style="display:none;"></div>
   <table class="w3-table w3-striped w3-bordered">
     <tr>
       <th>Name</th>

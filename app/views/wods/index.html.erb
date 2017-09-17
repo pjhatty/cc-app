@@ -6,6 +6,6 @@
   <% if current_user&.editor? %>
     <%= link_to 'New WOD', new_wod_path, remote: true, class: 'w3-margin w3-btn w3-white w3-border w3-border-blue w3-round-large' %>
   <% end %>
-  <div id="wod-form" class='w3-modal w3-display-middle' style="display:none;"></div>
+  <div id="wod-form" class='w3-modal' style="display:none;"></div>
   <div id='wods'><%= render @wods %></div>
 </div>

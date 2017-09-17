@@ -29,7 +29,7 @@ class WodsController < ApplicationController
     @score = Score.create(score_params)
 
     if @score.save
-      redirect_to '/wods'
+      redirect_to request.referrer
     else
       render 'error'
     end

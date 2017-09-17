@@ -4,14 +4,10 @@
     <title>Cc</title>
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
     <style>
-
       #sidebar {
         font-family: "Poppins", sans-serif;
         color:#ffffff;
@@ -87,6 +83,16 @@
         top: 10px;
       }
 
+      .form-scroll {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 400px;
+        margin: auto;
+      }
+
 
     </style>
 
@@ -104,7 +110,11 @@
     <% if current_user %>
         <div class='w3-bar-item'>
           <div class="w3-large"><%= current_user.email %>  <i id='expand' class="w3-hover-white material-icons w3-large">expand_more</i></div>
-          <div style="display: none;" id='account-actions' class='w3-padding w3-margin w3-center w3-border w3-round w3-btn w3-white'><%= link_to 'Logout', logout_path, method: 'delete' %></div>
+          <%= link_to logout_path, method: 'delete' do %>
+            <div style="display: none;" id='account-actions' class='w3-padding w3-margin w3-center w3-border w3-round w3-btn w3-white'>
+              Sign out
+            </div>
+          <% end %>
         </div>
     <% end %>
         <div>
