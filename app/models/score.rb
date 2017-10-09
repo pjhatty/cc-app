@@ -1,5 +1,4 @@
 class Score < ApplicationRecord
   belongs_to :wod
   belongs_to :athlete
-  validates :athlete_id, uniqueness: true
-end
+  validates_uniqueness_of :athlete_id , :scope => [:wod_id]
